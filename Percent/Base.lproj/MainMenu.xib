@@ -10,7 +10,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Percent" customModuleProvider="target"/>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="fEm-KB-93g" customClass="PercentMenuController" customModule="Percent" customModuleProvider="target">
@@ -20,6 +20,9 @@
         </customObject>
         <menu id="US7-EP-iXh">
             <items>
+                <menuItem isSeparatorItem="YES" id="3O4-46-oDe"/>
+                <menuItem title="Preferences" keyEquivalent="," id="jGF-K7-qtY"/>
+                <menuItem isSeparatorItem="YES" id="BIX-G6-Rdi"/>
                 <menuItem title="Quit" keyEquivalent="q" id="Koo-w8-hJL">
                     <connections>
                         <action selector="quitClicked:" target="fEm-KB-93g" id="36E-9d-El9"/>

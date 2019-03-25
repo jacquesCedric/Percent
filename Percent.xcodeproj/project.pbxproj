@@ -11,6 +11,9 @@
 		C4A261E32247920D001577B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4A261E22247920D001577B4 /* Assets.xcassets */; };
 		C4A261E62247920D001577B4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4A261E42247920D001577B4 /* MainMenu.xib */; };
 		C4A261EF22479340001577B4 /* PercentMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A261EE22479340001577B4 /* PercentMenuController.swift */; };
+		C4A261F12248E89D001577B4 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A261F02248E89D001577B4 /* TimeView.swift */; };
+		C4A261F32248EA34001577B4 /* JCGGProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A261F22248EA34001577B4 /* JCGGProgressBar.swift */; };
+		C4A261F622490743001577B4 /* Percentage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A261F522490743001577B4 /* Percentage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +24,9 @@
 		C4A261E72247920D001577B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4A261E82247920D001577B4 /* Percent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Percent.entitlements; sourceTree = "<group>"; };
 		C4A261EE22479340001577B4 /* PercentMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentMenuController.swift; sourceTree = "<group>"; };
+		C4A261F02248E89D001577B4 /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
+		C4A261F22248EA34001577B4 /* JCGGProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCGGProgressBar.swift; sourceTree = "<group>"; };
+		C4A261F522490743001577B4 /* Percentage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Percentage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,14 +59,25 @@
 		C4A261DF2247920C001577B4 /* Percent */ = {
 			isa = PBXGroup;
 			children = (
-				C4A261E02247920C001577B4 /* AppDelegate.swift */,
 				C4A261EE22479340001577B4 /* PercentMenuController.swift */,
-				C4A261E22247920D001577B4 /* Assets.xcassets */,
+				C4A261F02248E89D001577B4 /* TimeView.swift */,
+				C4A261F522490743001577B4 /* Percentage.swift */,
 				C4A261E42247920D001577B4 /* MainMenu.xib */,
-				C4A261E72247920D001577B4 /* Info.plist */,
+				C4A261F422490458001577B4 /* External */,
+				C4A261E02247920C001577B4 /* AppDelegate.swift */,
 				C4A261E82247920D001577B4 /* Percent.entitlements */,
+				C4A261E22247920D001577B4 /* Assets.xcassets */,
+				C4A261E72247920D001577B4 /* Info.plist */,
 			);
 			path = Percent;
+			sourceTree = "<group>";
+		};
+		C4A261F422490458001577B4 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				C4A261F22248EA34001577B4 /* JCGGProgressBar.swift */,
+			);
+			path = External;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,7 +151,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4A261EF22479340001577B4 /* PercentMenuController.swift in Sources */,
+				C4A261F32248EA34001577B4 /* JCGGProgressBar.swift in Sources */,
 				C4A261E12247920C001577B4 /* AppDelegate.swift in Sources */,
+				C4A261F12248E89D001577B4 /* TimeView.swift in Sources */,
+				C4A261F622490743001577B4 /* Percentage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

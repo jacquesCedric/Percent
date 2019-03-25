@@ -16,10 +16,27 @@ class PercentMenuController: NSObject {
     override func awakeFromNib() {
         statusItem.menu = statusMenu
         statusItem.button?.title = "Percentage"
+        
+        // Add CALayer if you like
+        // Change subview of statusItem.button
+        
+        addTimersToMenu()
     }
     
     @IBAction func quitClicked(_ sender: Any) {
         NSApplication.shared.terminate(self)
     }
     
+    func addTimersToMenu() {
+        let timers: [PercentType] = [PercentType.day, PercentType.month, PercentType.year]
+        _ = timers.reversed().map{ addTimerView(type: $0) }
+    }
+    
+    func addTimerView(type: PercentType) {
+        let timerView = NSMenuItem(title: "percentAdded", action: nil, keyEquivalent: "")
+        
+        timerView.view = TimeView.init(period: type)
+        statusMenu.insertItem(timerView, at: 0)
+        
+    }
 }
