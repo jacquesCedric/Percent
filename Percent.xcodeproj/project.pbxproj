@@ -59,9 +59,9 @@
 		C4A261DF2247920C001577B4 /* Percent */ = {
 			isa = PBXGroup;
 			children = (
+				C4A261F522490743001577B4 /* Percentage.swift */,
 				C4A261EE22479340001577B4 /* PercentMenuController.swift */,
 				C4A261F02248E89D001577B4 /* PercentView.swift */,
-				C4A261F522490743001577B4 /* Percentage.swift */,
 				C4A261E42247920D001577B4 /* MainMenu.xib */,
 				C4A261F422490458001577B4 /* External */,
 				C4A261E02247920C001577B4 /* AppDelegate.swift */,

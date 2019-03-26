@@ -1,6 +1,6 @@
 //
 //  Percentage.swift
-//  Percent
+//  Nice functions that help us get percentage.
 //
 //  Created by Jacob Gold on 25/3/19.
 //  Copyright © 2019 Jacob Gold. All rights reserved.
@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Consider adding custom at some stage?
 enum PercentType: String {
     case day = "day"
     case month = "month"
@@ -15,8 +16,6 @@ enum PercentType: String {
 }
 
 class Percentage {
-    let seconds: Int = 60 * 60 * 24
-    
     static func getHourPercent() -> Int {
         let date = Date()
         let calendar = Calendar.current
