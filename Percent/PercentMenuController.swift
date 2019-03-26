@@ -35,7 +35,7 @@ class PercentMenuController: NSObject {
     func addTimerView(type: PercentType) {
         let timerView = NSMenuItem(title: "percentAdded", action: nil, keyEquivalent: "")
         
-        timerView.view = TimeView.init(period: type)
+        timerView.view = PercentView.init(period: type)
         statusMenu.insertItem(timerView, at: 0)
         
     }
