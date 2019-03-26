@@ -20,23 +20,22 @@ class PercentMenuController: NSObject {
         // Add CALayer if you like
         // Change subview of statusItem.button
         
-        addTimersToMenu()
+        addPercentViewsToMenu()
     }
     
     @IBAction func quitClicked(_ sender: Any) {
         NSApplication.shared.terminate(self)
     }
     
-    func addTimersToMenu() {
+    func addPercentViewsToMenu() {
         let timers: [PercentType] = [PercentType.day, PercentType.month, PercentType.year]
-        _ = timers.reversed().map{ addTimerView(type: $0) }
+        _ = timers.reversed().map{ addPercentView(type: $0) }
     }
     
-    func addTimerView(type: PercentType) {
+    func addPercentView(type: PercentType) {
         let timerView = NSMenuItem(title: "percentAdded", action: nil, keyEquivalent: "")
         
         timerView.view = PercentView.init(period: type)
-        statusMenu.insertItem(timerView, at: 0)
-        
+        statusMenu.insertItem(timerView, at: 0)   
     }
 }
