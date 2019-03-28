@@ -9,9 +9,13 @@
 import Cocoa
 
 class PercentView: NSView {
-    let progress: JCGGProgressBar = JCGGProgressBar.init(frame: CGRect(x: 0, y: 8, width: 40, height: 14))
+    let progress: JCGGProgressBar = JCGGProgressBar.init(frame: CGRect(x: 0, y: 6, width: 40, height: 14))
     let label: NSTextField = NSTextField.init(labelWithString: "%%")
-    let growthAmount:CGFloat = 20.0
+    let growthAmount: CGFloat = 20.0
+    
+    var percentPeriod: PercentType = .day
+    
+    var timer = Timer()
     
     override init(frame frameRect: NSRect) {
         super.init(frame:frameRect);
@@ -23,6 +27,8 @@ class PercentView: NSView {
     
     //or customized constructor/ init
     init(period: PercentType, isMenuItem: Bool = true) {
+        percentPeriod = period
+        
         // Setup dimensions
         // This can be static as we don't need to account for many cases
         let size = NSRect(x: 0, y: 0, width: 145, height: 24)
@@ -30,14 +36,14 @@ class PercentView: NSView {
         super.init(frame: size)
         
         // Setup the progress bar
-        progress.progressValue = CGFloat(getPercent(period: period))
         progress.barThickness = 14
         
         // Setup the percent label
-        label.stringValue = getPercentLabel(period: period)
-        label.frame = NSRect(x: 45, y: 0, width: 100, height: 24)
+        label.frame = NSRect(x: 45, y: 0, width: 100, height: 22)
         label.font = NSFont.menuBarFont(ofSize: 0)
         label.backgroundColor = NSColor.clear
+        
+        updatePercent()
         
         // Add the views
         self.addSubview(progress)
@@ -48,10 +54,30 @@ class PercentView: NSView {
         
         // Tracking Areas
         // Only works when a subview of NSMenuItem
+        // Is this necessary?
         if (isMenuItem) {
             let mouseOverTrackingArea = NSTrackingArea.init(rect: size, options: [.activeAlways, .mouseEnteredAndExited], owner: self, userInfo: nil)
             self.addTrackingArea(mouseOverTrackingArea)
         }
+        
+        var interval: TimeInterval = 60
+        switch(percentPeriod) {
+        case .day:
+            interval = 60
+        case .month:
+            interval = 3600
+        case .year:
+            interval = 86400
+        }
+        
+        timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updatePercent), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updatePercent() {
+        let percent = getPercent(period: percentPeriod)
+        
+        progress.progressValue = CGFloat(percent)
+        label.stringValue = getPercentLabel(percentage: percent)
     }
     
     // Get the percent for whatever period
@@ -67,15 +93,9 @@ class PercentView: NSView {
     }
     
     // How we populate our percent strings
-    func getPercentLabel(period: PercentType) -> String {
-        switch(period) {
-        case .day:
-            return "Day: \(getPercent(period: period))%"
-        case .month:
-            return "Month: \(getPercent(period: period))%"
-        case .year:
-            return "Year: \(getPercent(period: period))%"
-        }
+    func getPercentLabel(percentage: Int) -> String {
+        let period = percentPeriod.rawValue
+        return "\(period.capitalized): \(percentage)%"
     }
     
     // Mouse tracking events
@@ -95,9 +115,5 @@ class PercentView: NSView {
             label.animator().frame.origin.x -= growthAmount
             label.animator().frame.size.width += growthAmount
         })
-    }
-    
-    override func mouseMoved(with event: NSEvent) {
-        print("mouse moved over view")
     }
 }
