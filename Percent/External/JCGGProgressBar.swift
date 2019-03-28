@@ -24,6 +24,12 @@ open class JCGGProgressBar: NSView {
             needsDisplay = true
         }
     }
+    // Corner radius
+    @IBInspectable public var cornerRadius: CGFloat = 2.5 {
+        didSet {
+            progressValue = min(max(cornerRadius, 0), barThickness / 2)
+        }
+    }
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,22 +43,23 @@ open class JCGGProgressBar: NSView {
         super.draw(rect)
         
         guard let context = NSGraphicsContext.current?.cgContext else {return}
-        let beginPoint = CGPoint(x: (barThickness / 2), y: frame.size.height / 2)
+        
+        let trackRectangle = CGRect(x: barThickness / 2, y: (rect.height - barThickness) / 2 , width: rect.width - (barThickness / 2), height: barThickness)
+        let trackRoundedRectangle = CGPath(roundedRect: trackRectangle, cornerWidth: cornerRadius, cornerHeight:cornerRadius, transform: nil)
         
         // Progress Track
-        context.setStrokeColor(trackColor.cgColor)
-        context.beginPath()
-        context.setLineWidth(barThickness)
-        context.move(to: beginPoint)
-        context.addLine(to: CGPoint(x: frame.size.width - (barThickness / 2), y: frame.size.height / 2))
-        context.strokePath()
+        context.setFillColor(trackColor.cgColor)
+        context.addPath(trackRoundedRectangle)
+        context.fillPath()
         
         // Progress Bar
+        let progressRectangle = CGRect(x: barThickness / 2, y: (rect.height - barThickness) / 2 , width: percentage() + (barThickness / 2), height: barThickness)
+        let progressRoundedRectangle = CGPath(roundedRect: progressRectangle, cornerWidth: cornerRadius, cornerHeight: cornerRadius, transform: nil)
+        
         context.setStrokeColor(barColor.cgColor)
-        context.beginPath()
-        context.move(to: beginPoint)
-        context.addLine(to: CGPoint(x: (barThickness / 2) + percentage(), y: frame.size.height / 2))
-        context.strokePath()
+        context.setFillColor(barColor.cgColor)
+        context.addPath(progressRoundedRectangle)
+        context.fillPath()
     }
     
     private func percentage() -> CGFloat {
