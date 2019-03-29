@@ -76,5 +76,4 @@ open class JCGGProgressBar: NSView {
         let screenWidth = frame.size.width - barThickness
         return ((progressValue / 100) * screenWidth)
     }
-    
 }

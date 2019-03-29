@@ -22,6 +22,8 @@ class PercentMenuController: NSObject {
         preferencesWindow = PreferencesWindow()
         
         setBarAsMenuTitle()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setBarAsMenuTitle), name: Notification.Name("PercentageAppPreferencesUpdated"), object: nil)
     }
     
     @IBAction func preferencesClicked(_ sender: Any) {
@@ -46,20 +48,29 @@ class PercentMenuController: NSObject {
     }
     
     
-    func setBarAsMenuTitle() {
+    @objc func setBarAsMenuTitle() {
+        if (menuProgressBar != nil) {
+            statusItem.button?.subviews[0].removeFromSuperview()
+            menuProgressBar = nil
+        }
+        
         // Hacky solution to adding percent bar to menu, given how replacing view is deprecated
         let period = Settings.loadMenuDisplayPeriod()
         
         let title = Settings.loadMenuDisplayTypeConfig()
         statusItem.button?.attributedTitle = title.menuBarString()
-        let menuButtonView = JCGGProgressBar.init(frame: CGRect(x: 0, y: 4, width: 60, height: 14))
         
-        // Get what we need
-        let progress = period.percentValue
+        if (title.progressBar) {
+            let menuButtonProgressBar = JCGGProgressBar.init(frame: CGRect(x: 0, y: 4, width: 60, height: 14))
         
-        // Set our progress bar up and add it to the menu
-        menuButtonView.progressValue = CGFloat(progress)
-        menuButtonView.barThickness = 14
-        statusItem.button?.addSubview(menuButtonView)
+            // Get what we need
+            let progress = period.percentValue
+        
+            // Set our progress bar up and add it to the menu
+            menuButtonProgressBar.progressValue = CGFloat(progress)
+            menuButtonProgressBar.barThickness = 14
+            menuProgressBar = menuButtonProgressBar
+            statusItem.button?.addSubview(menuButtonProgressBar)
+        }
     }
 }

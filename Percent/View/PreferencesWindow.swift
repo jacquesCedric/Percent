@@ -19,7 +19,6 @@ class PreferencesWindow: NSWindowController {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-        
         loadPreferences()
     }
     
@@ -36,8 +35,6 @@ class PreferencesWindow: NSWindowController {
         let displayItemsPrefs = Settings.loadMenuDisplayTypeConfig()
         
         menuBarDisplayPeriod.selectedSegment = displayPeriodPrefs.rawValue
-        
-        menuBarDisplayPeriod.selectedSegment = displayPeriodPrefs.rawValue
         menuBarDisplayItems.setSelected(displayItemsPrefs.progressBar, forSegment: 0)
         menuBarDisplayItems.setSelected(displayItemsPrefs.period, forSegment: 1)
         menuBarDisplayItems.setSelected(displayItemsPrefs.percent, forSegment: 2)
@@ -47,11 +44,12 @@ class PreferencesWindow: NSWindowController {
         if let displayPeriodPrefs = Settings.PercentType.init(rawValue: menuBarDisplayPeriod.selectedSegment) {
             Settings.saveMenuDisplayPeriod(config: displayPeriodPrefs)
         }
-        let displayItemsPregs = Settings.MenuDisplayItems.init(progressBar: menuBarDisplayItems.isEnabled(forSegment: 0),
-                                                               period: menuBarDisplayItems.isEnabled(forSegment: 1),
-                                                               percent: menuBarDisplayItems.isEnabled(forSegment: 2))
+        let displayItemsPregs = Settings.MenuDisplayItems.init(progressBar: menuBarDisplayItems.isSelected(forSegment: 0),
+                                                               period: menuBarDisplayItems.isSelected(forSegment: 1),
+                                                               percent: menuBarDisplayItems.isSelected(forSegment: 2))
         Settings.saveMenuDisplayTypeConfig(config: displayItemsPregs)
         
+        NotificationCenter.default.post(name: Notification.Name("PercentageAppPreferencesUpdated"), object: nil)
         self.close()
     }
     
