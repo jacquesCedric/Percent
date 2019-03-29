@@ -9,14 +9,20 @@
 import Cocoa
 
 class PercentView: NSView {
+    // UI elements declared here as they are updated over time
     let progress: JCGGProgressBar = JCGGProgressBar.init(frame: CGRect(x: 0, y: 6, width: 40, height: 14))
     let label: NSTextField = NSTextField.init(labelWithString: "%%")
+    
+    // Amount by which percent bar scales when hovered over
     let growthAmount: CGFloat = 20.0
     
-    var percentPeriod: PercentType = .day
+    // Percent type for this view
+    var percentPeriod: Settings.PercentType = .day
     
+    // For updating
     var timer = Timer()
     
+    // Required inits
     override init(frame frameRect: NSRect) {
         super.init(frame:frameRect);
     }
@@ -25,12 +31,14 @@ class PercentView: NSView {
         super.init(coder: coder)
     }
     
-    //or customized constructor/ init
-    init(period: PercentType, isMenuItem: Bool = true) {
+    // What we like
+    // Is isMenuItem parameter necessary?
+    init(period: Settings.PercentType, isMenuItem: Bool = true) {
+        // Assign PercentType for view
         percentPeriod = period
         
         // Setup dimensions
-        // This can be static as we don't need to account for many cases
+        // This can be static as we don't need to account for variations
         let size = NSRect(x: 0, y: 0, width: 145, height: 24)
         
         super.init(frame: size)
@@ -63,40 +71,31 @@ class PercentView: NSView {
         var interval: TimeInterval = 60
         switch(percentPeriod) {
         case .day:
-            interval = 60
+            interval = 60.0 // testing only
+//            interval = 864 // approx 1% of a day
         case .month:
-            interval = 3600
+            interval = 26000 // approx 1% of a 29 days
         case .year:
-            interval = 86400
+            interval = 315000 // approx 1% of a 365 days
         }
         
         timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updatePercent), userInfo: nil, repeats: true)
+        timer.tolerance = 1.0
     }
     
     @objc func updatePercent() {
-        let percent = getPercent(period: percentPeriod)
+        let percent = percentPeriod.percentValue
         
         progress.progressValue = CGFloat(percent)
         label.stringValue = getPercentLabel(percentage: percent)
     }
     
-    // Get the percent for whatever period
-    func getPercent(period: PercentType) -> Int {
-        switch(period) {
-        case .day:
-            return Percentage.getDayPercent()
-        case .month:
-            return Percentage.getMonthPercent()
-        case .year:
-            return Percentage.getYearPercent()
-        }
+    // How we populate our percent strings
+    private func getPercentLabel(percentage: Int) -> String {
+        let period = percentPeriod.description
+        return "\(period): \(percentage)%"
     }
     
-    // How we populate our percent strings
-    func getPercentLabel(percentage: Int) -> String {
-        let period = percentPeriod.rawValue
-        return "\(period.capitalized): \(percentage)%"
-    }
     
     // Mouse tracking events
     override func mouseEntered(with event: NSEvent) {

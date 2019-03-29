@@ -10,6 +10,7 @@ import Cocoa
 
 class PercentMenuController: NSObject {
     @IBOutlet weak var statusMenu: NSMenu!
+    var preferencesWindow: PreferencesWindow!
     
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
@@ -18,7 +19,13 @@ class PercentMenuController: NSObject {
         statusItem.button?.title = "%"
         addPercentViewsToMenu()
         
-        setBarAsMenuTitle(period: PercentType.day)
+        preferencesWindow = PreferencesWindow()
+        
+        setBarAsMenuTitle()
+    }
+    
+    @IBAction func preferencesClicked(_ sender: Any) {
+        preferencesWindow.showWindow(nil)
     }
     
     @IBAction func quitClicked(_ sender: Any) {
@@ -27,11 +34,11 @@ class PercentMenuController: NSObject {
     
     // Adding percentage stats to menu
     func addPercentViewsToMenu() {
-        let timers: [PercentType] = [PercentType.day, PercentType.month, PercentType.year]
+        let timers: [Settings.PercentType] = [Settings.PercentType.day, Settings.PercentType.month, Settings.PercentType.year]
         _ = timers.reversed().map{ addPercentView(type: $0) }
     }
     
-    func addPercentView(type: PercentType) {
+    func addPercentView(type: Settings.PercentType) {
         let timerView = NSMenuItem(title: "percentAdded", action: nil, keyEquivalent: "")
         
         timerView.view = PercentView.init(period: type)
@@ -39,23 +46,16 @@ class PercentMenuController: NSObject {
     }
     
     
-    func setBarAsMenuTitle(period: PercentType) {
+    func setBarAsMenuTitle() {
         // Hacky solution to adding percent bar to menu, given how replacing view is deprecated
-        // Set invisible text of right length for a bar
-        statusItem.button?.attributedTitle = NSAttributedString.init(string: "%%%%..",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: NSColor.clear])
+        let period = Settings.loadMenuDisplayPeriod()
+        
+        let title = Settings.loadMenuDisplayTypeConfig()
+        statusItem.button?.attributedTitle = title.menuBarString()
         let menuButtonView = JCGGProgressBar.init(frame: CGRect(x: 0, y: 4, width: 60, height: 14))
         
         // Get what we need
-        var progress = 0
-        switch(period) {
-        case .day:
-            progress = Percentage.getDayPercent()
-        case .month:
-            progress = Percentage.getMonthPercent()
-        case .year:
-            progress = Percentage.getYearPercent()
-        }
+        let progress = period.percentValue
         
         // Set our progress bar up and add it to the menu
         menuButtonView.progressValue = CGFloat(progress)

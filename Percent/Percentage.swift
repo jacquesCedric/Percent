@@ -8,12 +8,6 @@
 
 import Foundation
 
-// Consider adding custom at some stage?
-enum PercentType: String {
-    case day = "day"
-    case month = "month"
-    case year = "year"
-}
 
 class Percentage {
     static func getHourPercent() -> Int {
@@ -55,8 +49,5 @@ class Percentage {
         
         let percent = Int(100 * (Float(days) / totalDaysForYear))
         return percent
-    }
-    
-    
-    
+    }    
 }

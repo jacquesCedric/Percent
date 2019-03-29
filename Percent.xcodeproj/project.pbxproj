@@ -14,6 +14,9 @@
 		C4A261F12248E89D001577B4 /* PercentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A261F02248E89D001577B4 /* PercentView.swift */; };
 		C4A261F32248EA34001577B4 /* JCGGProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A261F22248EA34001577B4 /* JCGGProgressBar.swift */; };
 		C4A261F622490743001577B4 /* Percentage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A261F522490743001577B4 /* Percentage.swift */; };
+		C4A6698E224CFA210017219E /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A6698C224CFA210017219E /* PreferencesWindow.swift */; };
+		C4A6698F224CFA210017219E /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4A6698D224CFA210017219E /* PreferencesWindow.xib */; };
+		C4A66991224DA87B0017219E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A66990224DA87B0017219E /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,9 @@
 		C4A261F02248E89D001577B4 /* PercentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentView.swift; sourceTree = "<group>"; };
 		C4A261F22248EA34001577B4 /* JCGGProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCGGProgressBar.swift; sourceTree = "<group>"; };
 		C4A261F522490743001577B4 /* Percentage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Percentage.swift; sourceTree = "<group>"; };
+		C4A6698C224CFA210017219E /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
+		C4A6698D224CFA210017219E /* PreferencesWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		C4A66990224DA87B0017219E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +65,10 @@
 		C4A261DF2247920C001577B4 /* Percent */ = {
 			isa = PBXGroup;
 			children = (
+				C4A66990224DA87B0017219E /* Settings.swift */,
 				C4A261F522490743001577B4 /* Percentage.swift */,
 				C4A261EE22479340001577B4 /* PercentMenuController.swift */,
-				C4A261F02248E89D001577B4 /* PercentView.swift */,
-				C4A261E42247920D001577B4 /* MainMenu.xib */,
+				C4A6698B224CF94E0017219E /* View */,
 				C4A261F422490458001577B4 /* External */,
 				C4A261E02247920C001577B4 /* AppDelegate.swift */,
 				C4A261E82247920D001577B4 /* Percent.entitlements */,
@@ -78,6 +84,17 @@
 				C4A261F22248EA34001577B4 /* JCGGProgressBar.swift */,
 			);
 			path = External;
+			sourceTree = "<group>";
+		};
+		C4A6698B224CF94E0017219E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4A6698C224CFA210017219E /* PreferencesWindow.swift */,
+				C4A6698D224CFA210017219E /* PreferencesWindow.xib */,
+				C4A261F02248E89D001577B4 /* PercentView.swift */,
+				C4A261E42247920D001577B4 /* MainMenu.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4A261E32247920D001577B4 /* Assets.xcassets in Resources */,
+				C4A6698F224CFA210017219E /* PreferencesWindow.xib in Resources */,
 				C4A261E62247920D001577B4 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +173,8 @@
 				C4A261F32248EA34001577B4 /* JCGGProgressBar.swift in Sources */,
 				C4A261E12247920C001577B4 /* AppDelegate.swift in Sources */,
 				C4A261F12248E89D001577B4 /* PercentView.swift in Sources */,
+				C4A66991224DA87B0017219E /* Settings.swift in Sources */,
+				C4A6698E224CFA210017219E /* PreferencesWindow.swift in Sources */,
 				C4A261F622490743001577B4 /* Percentage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

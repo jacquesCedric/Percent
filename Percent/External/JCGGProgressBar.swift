@@ -27,7 +27,7 @@ open class JCGGProgressBar: NSView {
     // Corner radius
     @IBInspectable public var cornerRadius: CGFloat = 2.5 {
         didSet {
-            progressValue = min(max(cornerRadius, 0), barThickness / 2)
+            cornerRadius = min(max(cornerRadius, 0), barThickness / 2)
         }
     }
     
@@ -44,8 +44,13 @@ open class JCGGProgressBar: NSView {
         
         guard let context = NSGraphicsContext.current?.cgContext else {return}
         
-        let trackRectangle = CGRect(x: barThickness / 2, y: (rect.height - barThickness) / 2 , width: rect.width - (barThickness / 2), height: barThickness)
-        let trackRoundedRectangle = CGPath(roundedRect: trackRectangle, cornerWidth: cornerRadius, cornerHeight:cornerRadius, transform: nil)
+        let trackRectangle = CGRect(x: barThickness / 2,
+                                    y: (rect.height - barThickness) / 2 ,
+                                    width: rect.width - (barThickness / 2),
+                                    height: barThickness)
+        let trackRoundedRectangle = CGPath(roundedRect: trackRectangle,
+                                           cornerWidth: cornerRadius, cornerHeight:cornerRadius,
+                                           transform: nil)
         
         // Progress Track
         context.setFillColor(trackColor.cgColor)
@@ -53,8 +58,13 @@ open class JCGGProgressBar: NSView {
         context.fillPath()
         
         // Progress Bar
-        let progressRectangle = CGRect(x: barThickness / 2, y: (rect.height - barThickness) / 2 , width: percentage() + (barThickness / 2), height: barThickness)
-        let progressRoundedRectangle = CGPath(roundedRect: progressRectangle, cornerWidth: cornerRadius, cornerHeight: cornerRadius, transform: nil)
+        let progressRectangle = CGRect(x: barThickness / 2,
+                                       y: (rect.height - barThickness) / 2,
+                                       width: percentage() + (barThickness / 2),
+                                       height: barThickness)
+        let progressRoundedRectangle = CGPath(roundedRect: progressRectangle,
+                                              cornerWidth: cornerRadius, cornerHeight: cornerRadius,
+                                              transform: nil)
         
         context.setStrokeColor(barColor.cgColor)
         context.setFillColor(barColor.cgColor)
