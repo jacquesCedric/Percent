@@ -13,6 +13,7 @@ class PercentMenuController: NSObject {
     var preferencesWindow: PreferencesWindow!
     
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    var menuProgressBar: JCGGProgressBar?
     
     override func awakeFromNib() {
         statusItem.menu = statusMenu
@@ -69,6 +70,7 @@ class PercentMenuController: NSObject {
             // Set our progress bar up and add it to the menu
             menuButtonProgressBar.progressValue = CGFloat(progress)
             menuButtonProgressBar.barThickness = 14
+            menuProgressBar = menuButtonProgressBar
             statusItem.button?.addSubview(menuButtonProgressBar)
         }
     }
