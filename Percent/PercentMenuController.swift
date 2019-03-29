@@ -69,7 +69,6 @@ class PercentMenuController: NSObject {
             // Set our progress bar up and add it to the menu
             menuButtonProgressBar.progressValue = CGFloat(progress)
             menuButtonProgressBar.barThickness = 14
-            menuProgressBar = menuButtonProgressBar
             statusItem.button?.addSubview(menuButtonProgressBar)
         }
     }
