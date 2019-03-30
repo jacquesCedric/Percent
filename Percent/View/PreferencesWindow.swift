@@ -1,6 +1,6 @@
 //
 //  PreferencesWindow.swift
-//  Percent
+//  Preferences window creation, saving, loading, etc.
 //
 //  Created by Jacob Gold on 28/3/19.
 //  Copyright © 2019 Jacob Gold. All rights reserved.

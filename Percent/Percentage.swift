@@ -1,6 +1,7 @@
 //
 //  Percentage.swift
 //  Nice functions that help us get percentage.
+//  Revisit this, as there's probably a better way to do these calculations
 //
 //  Created by Jacob Gold on 25/3/19.
 //  Copyright © 2019 Jacob Gold. All rights reserved.

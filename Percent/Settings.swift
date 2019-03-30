@@ -1,6 +1,7 @@
 //
 //  Settings.swift
-//  Percent
+//  Type used for saving and loading data
+//  Sacving and loading data functions
 //
 //  Created by Jacob Gold on 29/3/19.
 //  Copyright © 2019 Jacob Gold. All rights reserved.
@@ -10,6 +11,8 @@
 import Cocoa
 
 class Settings {
+    // This is used in a few places
+    // What percent of what time period we want to use
     // Consider adding custom at some stage?
     enum PercentType: Int {
         case day = 0
@@ -39,6 +42,7 @@ class Settings {
         }
     }
     
+    // What items we want to display in the menu
     struct MenuDisplayItems: Codable {
         var progressBar: Bool
         var period: Bool
@@ -48,16 +52,16 @@ class Settings {
             self.progressBar = progressBar
             self.period = period
             self.percent = percent
-            
-            if (!self.progressBar && !self.period && !self.percent) { self.progressBar = true }
         }
         
+        // Format a string for the menu bar
         func menuBarString() -> NSMutableAttributedString {
             var attrstring: NSMutableAttributedString
             var string: String = ""
             let percentPeriod = Settings.loadMenuDisplayPeriod()
             var space = 6 // How much string to make transparent
             
+            // Check the various conditions and format the string correctly
             if progressBar { string += "%%%%.." }
             if (progressBar && (period || percent)) {
                 string += "_"
@@ -67,10 +71,14 @@ class Settings {
             if (period && percent) { string += ": " }
             if percent { string += "\(percentPeriod.percentValue)%" }
             
+            // If nothing is selected
+            if (string == "") { string += "%"}
+            
             attrstring = NSMutableAttributedString(string: string)
             if progressBar { attrstring.addAttribute(NSAttributedString.Key.foregroundColor,
                                                      value: NSColor.clear,
                                                      range: NSRange(location: 0, length: space)) }
+            
             return attrstring
         }
     }

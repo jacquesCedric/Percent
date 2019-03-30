@@ -1,6 +1,6 @@
 //
 //  PercentMenuController.swift
-//  Percent
+//  The main menu object.
 //
 //  Created by Jacob Gold on 24/3/19.
 //  Copyright © 2019 Jacob Gold. All rights reserved.

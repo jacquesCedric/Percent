@@ -1,6 +1,6 @@
 //
 //  TimeView.swift
-//  Percent
+//  The view that exists to show percent of whatever period in NSMenuItem
 //
 //  Created by Jacob Gold on 25/3/19.
 //  Copyright © 2019 Jacob Gold. All rights reserved.
