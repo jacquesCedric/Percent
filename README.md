@@ -26,7 +26,7 @@ Open the project in Xcode and build. No need to do anything else.
 	- *Percent*: The percent value of time elapsed
 
 ## License
-`WorldClock` is available under a GPLv3 license. See the LICENSE file for more details.
+`Percent` is available under a GPLv3 license. See the LICENSE file for more details.
 
 ## Dependencies
 - [JCGGProgressBar](https://github.com/jacquesCedric/JCGGProgressBar) - Custom progress bar component, MIT licence
