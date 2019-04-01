@@ -15,6 +15,8 @@ class PercentMenuController: NSObject {
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     var menuProgressBar: JCGGProgressBar?
     
+    var timer: Timer?
+    
     override func awakeFromNib() {
         statusItem.menu = statusMenu
         statusItem.button?.title = "%"
@@ -25,6 +27,8 @@ class PercentMenuController: NSObject {
         setBarAsMenuTitle()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.setBarAsMenuTitle), name: Notification.Name("PercentageAppPreferencesUpdated"), object: nil)
+        
+        timer = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(setBarAsMenuTitle), userInfo: nil, repeats: true)
     }
     
     @IBAction func preferencesClicked(_ sender: Any) {

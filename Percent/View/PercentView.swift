@@ -71,8 +71,7 @@ class PercentView: NSView {
         var interval: TimeInterval = 60
         switch(percentPeriod) {
         case .day:
-            interval = 60.0 // testing only
-//            interval = 864 // approx 1% of a day
+            interval = 864 // approx 1% of a day
         case .month:
             interval = 26000 // approx 1% of a 29 days
         case .year:
